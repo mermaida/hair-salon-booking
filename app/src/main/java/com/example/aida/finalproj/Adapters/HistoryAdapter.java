@@ -76,12 +76,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         holder.price.setText("Total price: ₺" + Double.toString(appointments.get(position).getTotal_price()));
 
         List <String> keys = appointments.get(position).getService_name();
-        if (keys.size() == 1) holder.servicenames.setText(keys.get(0));
-        else {
-            String lastkey = keys.get(keys.size() - 1);
-            keys.remove(keys.size() - 1);
-            String str = Arrays.toString(keys.toArray()).replace("[", "").replace("]", "" + " and " + lastkey);
-            holder.servicenames.setText(str);
+        if (keys != null) {
+            if (keys.size() == 1) holder.servicenames.setText(keys.get(0));
+            else {
+                String lastkey = keys.get(keys.size() - 1);
+                keys.remove(keys.size() - 1);
+                String str = Arrays.toString(keys.toArray()).replace("[", "").replace("]", "" + " and " + lastkey);
+                holder.servicenames.setText(str);
+            }
         }
 
 
@@ -97,8 +99,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        holder.servicenames.setText(str);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,9 +1,11 @@
 package com.example.aida.finalproj.Activities.SalonActivities;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.aida.finalproj.Adapters.SalonViewPagerAdapter;
 import com.example.aida.finalproj.Adapters.UserViewPagerAdapter;
@@ -12,6 +14,7 @@ import com.example.aida.finalproj.R;
 public class ViewUserProfile extends AppCompatActivity {
 
     TabLayout tabLayout;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +44,9 @@ public class ViewUserProfile extends AppCompatActivity {
 
             }
         });
+
+        fab = findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
+
     }
 }
