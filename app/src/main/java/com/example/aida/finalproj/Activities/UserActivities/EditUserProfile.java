@@ -51,13 +51,13 @@ public class EditUserProfile extends AppCompatActivity {
                 final String email = cmail.getText().toString();
                 final String password = cpass.getText().toString();
 
-                if (name.equals(""))
+                if (!name.equals(""))
                     ref.child("name").setValue(name);
-                if (phone.equals(""))
+                if (!phone.equals(""))
                     ref.child("phone").setValue(phone);
-                if (email.equals(""))
+                if (!email.equals(""))
                     ref.child("email").setValue(email);
-                if (password.equals(""))
+                if (!password.equals(""))
                     ref.child("password").setValue(password);
 
                 Intent intent = new Intent(EditUserProfile.this, UserProfile.class);

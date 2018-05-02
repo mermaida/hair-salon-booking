@@ -249,7 +249,7 @@ public class SelectLocation extends FragmentActivity implements OnMapReadyCallba
     @Override
     public void onClick(View view) {
         if (view == sendBtn) {
-            if (address != null || address != "") {
+            if (!address.equals("")) {
                 geofire = new GeoFire(FirebaseDatabase.getInstance().getReference().child("salons_location"));
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 uid = user.getUid();

@@ -57,15 +57,15 @@ public class UpdateInfo extends AppCompatActivity {
                 final String email = smail.getText().toString();
                 final String password = spass.getText().toString();
 
-                if (name.equals(""))
+                if (!name.equals(""))
                     ref.child("name").setValue(name);
-                if (salon_name.equals(""))
+                if (!salon_name.equals(""))
                     ref.child("salon_name").setValue(name);
-                if (phone.equals(""))
+                if (!phone.equals(""))
                     ref.child("phone").setValue(phone);
-                if (email.equals(""))
+                if (!email.equals(""))
                     ref.child("email").setValue(email);
-                if (password.equals(""))
+                if (!password.equals(""))
                     ref.child("password").setValue(password);
 
 
