@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.aida.finalproj">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activities.UserActivities.GenderActivity" />
+        <activity android:name=".Activities.Authentication.TypeActivity" />
+        <activity android:name=".Activities.UserActivities.UserRegistration" />
+        <activity android:name=".Activities.Authentication.LoginActivity"/>
+            <activity android:name=".Classes.SplashScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".Activities.SalonActivities.ScheduleOverview" />
+        <activity android:name=".Activities.SalonActivities.ServiceDisplay" />
+        <activity android:name=".Activities.UserActivities.SelectService" />
+        <activity android:name=".Activities.UserActivities.UserDashboard" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBmni3YcH0VAxaO2Zk8uhYaxHPl8shr7OM" />
+
+        <activity android:name=".Activities.SalonActivities.SalonRegistration" />
+        <activity android:name=".Activities.SalonActivities.UpdateInfo" />
+        <activity android:name=".Activities.SalonActivities.SalonDashboard" />
+        <activity android:name=".Activities.UserActivities.BookAppointment" />
+        <activity android:name=".Activities.UserActivities.CalendarActivity" />
+        <activity android:name=".Activities.SalonActivities.SelectLocation" />
+        <activity android:name=".Activities.SalonActivities.SalonCalendarActivity" />
+        <activity android:name=".Activities.UserActivities.ConfirmationActivity" />
+        <activity android:name=".Activities.UserActivities.UserProfile" />
+        <activity android:name=".Activities.UserActivities.EditUserProfile" />
+        <activity android:name=".Activities.SalonActivities.AddAppointment" />
+        <activity android:name=".Activities.SalonActivities.ViewUserProfile" />
+        <activity android:name=".Activities.SalonActivities.SalonConfirmation" />
+        <activity android:name=".Activities.SalonActivities.SalonGallery" />
+        <activity android:name=".Activities.UserActivities.PhotoDetail" />
+        <activity android:name=".Activities.UserActivities.UserGallery" />
+    </application>
+
+</manifest>

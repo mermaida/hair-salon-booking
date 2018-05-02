@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arsenal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:text="Client name:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/srvname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arsenal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:text="Services ordered: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/priceamnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arsenal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:text="Total price:"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/viewbtn"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/common_google_signin_btn_text_light_default"
+            android:fontFamily="@font/arsenal"
+            android:padding="5dp"
+            android:text="View client's profile"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/cancelbtn"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@color/common_google_signin_btn_text_light_default"
+            android:fontFamily="@font/arsenal"
+            android:padding="5dp"
+            android:text="cancel appointment"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

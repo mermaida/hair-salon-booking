@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.example.aida.finalproj"
+        minSdkVersion 23
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.facebook.android:facebook-android-sdk:4.30.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'com.google.firebase:firebase-auth:15.0.0'
+    compile 'com.google.firebase:firebase-core:15.0.0'
+    compile 'com.google.firebase:firebase-database:15.0.0'
+    compile 'com.google.firebase:firebase-storage:15.0.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.30.0'
+    compile 'com.firebase:geofire-android:2.3.1'
+    compile 'com.google.android.gms:play-services-location:15.0.0'
+    compile 'com.google.android.gms:play-services-maps:15.0.0'
+    compile 'com.google.android.gms:play-services-places:15.0.0'
+    compile 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.firebaseui:firebase-ui-database:2.3.0'
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    implementation 'com.sangcomz:FishBun:0.8.6'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+
+    implementation 'com.android.support:design:26.1.0'
+}
+apply plugin: 'com.google.gms.google-services'

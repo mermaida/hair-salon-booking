@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="horizontal"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.example.aida.finalproj.Activities.UserActivities.UserDashboard">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/carticon"
+        app:backgroundTint="@color/colorAccent"
+        app:fabSize="normal"
+        app:layout_anchor="@+id/rellyt"
+        app:layout_anchorGravity="right|bottom" />
+
+    <RelativeLayout
+        android:id="@+id/rellyt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/search_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/radioGroup"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/search_layout"
+            android:ems="10"
+            android:hint="Search here"
+            android:inputType="textPersonName"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:textColor="#999999"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/search_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/result_list"
+            android:layout_marginStart="7dp"
+            android:layout_toEndOf="@+id/search_field"
+            android:background="@color/cardview_shadow_end_color"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_field"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/search_field"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="All" />
+
+            <RadioButton
+                android:id="@+id/near"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/all"
+                android:layout_marginRight="20dp"
+                android:layout_toEndOf="@+id/all"
+                android:layout_weight="1"
+                android:text="Nearby" />
+
+            <RadioButton
+                android:id="@+id/top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/near"
+                android:layout_toEndOf="@+id/near"
+                android:layout_weight="1"
+                android:text="Top Rated" />
+        </RadioGroup>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/result_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/search_field"
+            android:layout_marginTop="50dp" />
+
+        <ImageView
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/search_field"
+            android:layout_marginStart="14dp"
+            android:layout_toEndOf="@+id/search_btn"
+            app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+
+        <ImageButton
+            android:id="@+id/userprof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/search_field"
+            android:layout_marginStart="9dp"
+            android:background="@color/cardview_shadow_end_color"
+            app:srcCompat="@android:drawable/ic_menu_more" />
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

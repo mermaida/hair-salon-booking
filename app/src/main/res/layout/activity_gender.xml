@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iconfem"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_alignTop="@+id/iconman"
+        android:layout_marginStart="32dp"
+        app:srcCompat="@drawable/iconf" />
+
+    <ImageView
+        android:id="@+id/iconman"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="198dp"
+        app:srcCompat="@drawable/iconm" />
+
+    <CheckBox
+        android:id="@+id/chf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/iconfem"
+        android:layout_below="@+id/iconfem"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="67dp"
+        android:fontFamily="@font/arsenal"
+        android:text="Female"
+        android:textSize="18sp" />
+
+    <CheckBox
+        android:id="@+id/chm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/iconman"
+        android:layout_alignTop="@+id/chf"
+        android:layout_marginStart="17dp"
+        android:fontFamily="@font/arsenal"
+        android:text="Male"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/cont"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chf"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:background="@color/colorAccent"
+        android:fontFamily="@font/arsenal"
+        android:text="CONTINUE"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

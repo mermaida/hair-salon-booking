@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2dip">
+
+    <TextView
+        android:id="@+id/rank_dialog_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/arsenal"
+        android:text="Rate this appointment?"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:clickable="true"
+        android:id="@+id/dialog_ratingbar" android:layout_gravity="center"
+        android:numStars="5" android:stepSize="1.0" android:rating="2"
+        android:isIndicator="false"/>
+
+    <Button
+        android:id="@+id/rank_dialog_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="@color/colorAccent"
+        android:focusable="false"
+        android:fontFamily="@font/arsenal"
+        android:text="Save"
+        android:textColor="#FFF8C6"
+        android:textSize="20dip"
+        android:textStyle="bold" />
+
+</LinearLayout>
