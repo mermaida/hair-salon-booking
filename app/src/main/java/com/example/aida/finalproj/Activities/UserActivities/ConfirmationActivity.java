@@ -80,7 +80,8 @@ public class ConfirmationActivity extends AppCompatActivity {
             catch (java.text.ParseException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            }        }
+            }
+        }
 
 
         list = new ArrayList<>();
@@ -137,7 +138,7 @@ public class ConfirmationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ref2.setValue()
-                if (stime != null || list.size() == 0) {
+                if (stime != null && list.size() != 0) {
                     Appointment appt = new Appointment(uid, servicelist, totalprice);
                     ref2.setValue(appt);
                     ref2.child("salon_name").setValue(name);
