@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/arsenal"
-        android:text="Rate this appointment?"
+        android:text="Puan ver?"
         android:textSize="24dp"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
         android:background="@color/colorAccent"
         android:focusable="false"
         android:fontFamily="@font/arsenal"
-        android:text="Save"
+        android:text="Kaydet"
         android:textColor="#FFF8C6"
         android:textSize="20dip"
         android:textStyle="bold" />

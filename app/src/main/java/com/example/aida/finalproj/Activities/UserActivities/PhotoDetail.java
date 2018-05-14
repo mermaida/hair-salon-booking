@@ -43,12 +43,6 @@ public class PhotoDetail extends AppCompatActivity {
 
         Glide.with(this).load(photo).apply(RequestOptions.centerCropTransform()).into(image);
     }
-
-    public void onBackPressed(){
-        Intent intent = new Intent(PhotoDetail.this, SalonGallery.class);
-        startActivity(intent);
-        finish();
-    }
 }
 
 /*holder.layout.setOnClickListener(new View.OnClickListener() {

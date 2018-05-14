@@ -51,8 +51,8 @@ public class ConfirmAdapter extends RecyclerView.Adapter<ConfirmAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.name.setText(services.get(position).getService_name());
-        holder.price.setText("Price: ₺" + Double.toString(services.get(position).getPrice()));
-        holder.duration.setText("Duration: " + Double.toString(services.get(position).getDuration()));
+        holder.price.setText("Fiyat: ₺" + Double.toString(services.get(position).getPrice()));
+        holder.duration.setText("Süre: " + Double.toString(services.get(position).getDuration()) + "dk");
 
         Log.i("imagess", "" + services.get(position).getImage());
 
@@ -64,12 +64,12 @@ public class ConfirmAdapter extends RecyclerView.Adapter<ConfirmAdapter.ViewHold
                 context = view.getRootView().getContext();
                 AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
 
-                alert.setTitle("Delete");
-                alert.setMessage("Remove service from basket?");
+                alert.setTitle("Sil");
+                alert.setMessage("Sepetten silmek ister misiniz?");
 
                 db = new DatabaseHelper(getApplicationContext());
 
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         db.deleteService(services.get(position));
                         services.remove(services.get(position));
@@ -80,7 +80,7 @@ public class ConfirmAdapter extends RecyclerView.Adapter<ConfirmAdapter.ViewHold
                         activity.overridePendingTransition(0, 0);
                     }
                 });
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                     }

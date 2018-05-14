@@ -65,7 +65,7 @@ public class RetrievedAdapter extends RecyclerView.Adapter<RetrievedAdapter.View
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.sname.setText(appointments.get(position).getSalon_name());
         holder.datetime.setText(appointments.get(position).getDate() + ", " + appointments.get(position).getTime());
-        holder.price.setText("Total price: ₺" + Double.toString(appointments.get(position).getTotal_price()));
+        holder.price.setText("Toplam fiyat: ₺" + Double.toString(appointments.get(position).getTotal_price()));
 
         List <String> keys = appointments.get(position).getService_name();
         if (keys != null) {
@@ -73,7 +73,7 @@ public class RetrievedAdapter extends RecyclerView.Adapter<RetrievedAdapter.View
             else {
                 String lastkey = keys.get(keys.size() - 1);
                 keys.remove(keys.size() - 1);
-                String str = Arrays.toString(keys.toArray()).replace("[", "").replace("]", "" + " and " + lastkey);
+                String str = Arrays.toString(keys.toArray()).replace("[", "").replace("]", "" + " ve " + lastkey);
                 holder.servicenames.setText(str);
             }
         }
@@ -84,10 +84,10 @@ public class RetrievedAdapter extends RecyclerView.Adapter<RetrievedAdapter.View
                 Context context = view.getRootView().getContext();
                 AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
 
-                alert.setTitle("Cancel");
-                alert.setMessage("Are you sure you want to cancel this appointment?");
+                alert.setTitle("İptal");
+                alert.setMessage("Bu randevu iptal etmek ister misiniz?");
 
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                         String date = appointments.get(position).getDate();
@@ -146,10 +146,14 @@ public class RetrievedAdapter extends RecyclerView.Adapter<RetrievedAdapter.View
                         ref2.child(Long.toString(millidate)).removeValue();
 
                         notifyDataSetChanged();
+                        activity.finish();
+                        activity.overridePendingTransition(0, 0);
+                        activity.startActivity(activity.getIntent());
+                        activity.overridePendingTransition(0, 0);
                     }
                 });
 
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Geri dön", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                     }

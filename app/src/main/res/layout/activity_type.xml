@@ -33,8 +33,8 @@
         android:layout_below="@+id/iconcust"
         android:layout_marginTop="31dp"
         android:layout_toStartOf="@+id/iconown"
-        android:fontFamily="@font/aubrey"
-        android:text="Customer"
+        android:fontFamily="@font/arsenal"
+        android:text="Müşteri"
         android:textAlignment="center"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -46,8 +46,8 @@
         android:layout_alignBaseline="@+id/textView4"
         android:layout_alignBottom="@+id/textView4"
         android:layout_alignParentEnd="true"
-        android:fontFamily="@font/aubrey"
-        android:text="Salon Owner"
+        android:fontFamily="@font/arsenal"
+        android:text="Salon sahibi"
         android:textAlignment="center"
         android:textSize="25sp"
         android:textStyle="bold" />

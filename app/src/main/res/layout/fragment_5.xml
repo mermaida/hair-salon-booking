@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Your cart is empty."
+        android:text="Sepetiniz boş."
         android:textAlignment="center"
         android:visibility="invisible" />
 </RelativeLayout>

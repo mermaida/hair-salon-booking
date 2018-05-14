@@ -1,43 +1,33 @@
 package com.example.aida.finalproj.Activities.UserActivities;
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.preference.PreferenceManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.aida.finalproj.Adapters.ConfirmAdapter;
 import com.example.aida.finalproj.Classes.Appointment;
 import com.example.aida.finalproj.Classes.DatabaseHelper;
-import com.example.aida.finalproj.Classes.Salon;
 import com.example.aida.finalproj.Classes.Service;
 import com.example.aida.finalproj.R;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class ConfirmationActivity extends AppCompatActivity {
 
@@ -66,9 +56,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         app = findViewById(R.id.app);
 
         if (date == null || stime == null) {
-            app.setText("Date and time not selected");
-        }
-        else {
+            app.setText("Tarih ve zaman seçilmedi.");
+        } else {
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 Date sdate = sdf.parse(date);
@@ -76,8 +65,7 @@ public class ConfirmationActivity extends AppCompatActivity {
                 String millidate = Long.toString(millis);
                 ref2 = FirebaseDatabase.getInstance().getReference().child("users").child(uid).child("appointments").child(millidate);
                 app.setText(date + " " + stime);
-            }
-            catch (java.text.ParseException e) {
+            } catch (java.text.ParseException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
@@ -90,7 +78,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         totalprice = 0;
         totalduration = 0;
         servicelist = new ArrayList<>();
-        for(int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             double price = list.get(i).getPrice();
             totalprice += price;
 
@@ -102,7 +90,7 @@ public class ConfirmationActivity extends AppCompatActivity {
         }
 
         tp = findViewById(R.id.tp);
-        tp.setText("Total Price: ₺" + totalprice);
+        tp.setText("Toplam fiyat: ₺" + totalprice);
 
         ref = FirebaseDatabase.getInstance().getReference().child("salons").child(value).child("schedule");
         ref3 = FirebaseDatabase.getInstance().getReference().child("salons").child(value);
@@ -137,118 +125,135 @@ public class ConfirmationActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ref2.setValue()
-                if (stime != null && list.size() != 0) {
-                    Appointment appt = new Appointment(uid, servicelist, totalprice);
-                    ref2.setValue(appt);
-                    ref2.child("salon_name").setValue(name);
-                    ref2.child("time").setValue(stime);
-                    ref2.child("user_id").removeValue();
-                    switch (stime) {
-                        case "09:00":
-                            if (totalduration <= 60) ref.child(date).child("09:00").setValue(appt);
-                            else if (totalduration > 60) {
-                                ref.child(date).child("09:00").setValue(appt);
-                                ref.child(date).child("10:00").setValue(appt);
-                            } else if (totalduration > 120) {
-                                ref.child(date).child("09:00").setValue(appt);
-                                ref.child(date).child("10:00").setValue(appt);
-                                ref.child(date).child("11:00").setValue(appt);
+                boolean isConnected = checkConnection();
+                if (!isConnected)
+                    Toast.makeText(ConfirmationActivity.this, "İnternet bağlantısı yok", Toast.LENGTH_SHORT).show();
+                else {
+                    //ref2.setValue()
+                    Log.i("listsize", "" + list.size());
+                    Log.i("listsize", "" + servicelist.size());
+                    if (servicelist.size() != 0) {
+                        if (stime != null) {
+                            Appointment appt = new Appointment(uid, servicelist, totalprice);
+                            ref2.setValue(appt);
+                            ref2.child("salon_name").setValue(name);
+                            ref2.child("time").setValue(stime);
+                            ref2.child("user_id").removeValue();
+                            switch (stime) {
+                                case "09:00":
+                                    if (totalduration <= 60)
+                                        ref.child(date).child("09:00").setValue(appt);
+                                    else if (totalduration > 60) {
+                                        ref.child(date).child("09:00").setValue(appt);
+                                        ref.child(date).child("10:00").setValue(appt);
+                                    } else if (totalduration > 120) {
+                                        ref.child(date).child("09:00").setValue(appt);
+                                        ref.child(date).child("10:00").setValue(appt);
+                                        ref.child(date).child("11:00").setValue(appt);
+                                    }
+                                    break;
+                                case "10:00":
+                                    if (totalduration <= 60)
+                                        ref.child(date).child("10:00").setValue(appt);
+                                    if (totalduration > 60) {
+                                        ref.child(date).child("10:00").setValue(appt);
+                                        ref.child(date).child("11:00").setValue(appt);
+                                    } else if (totalduration > 120) {
+                                        ref.child(date).child("10:00").setValue(appt);
+                                        ref.child(date).child("11:00").setValue(appt);
+                                        ref.child(date).child("12:00").setValue(appt);
+                                    }
+                                    break;
+                                case "11:00":
+                                    if (totalduration <= 60)
+                                        ref.child(date).child("11:00").setValue(appt);
+                                    if (totalduration > 60) {
+                                        ref.child(date).child("11:00").setValue(appt);
+                                        ref.child(date).child("12:00").setValue(appt);
+                                    } else if (totalduration > 120) {
+                                        ref.child(date).child("11:00").setValue(appt);
+                                        ref.child(date).child("12:00").setValue(appt);
+                                        ref.child(date).child("13:00").setValue(appt);
+                                    }
+                                    break;
+                                case "12:00":
+                                    if (totalduration <= 60)
+                                        ref.child(date).child("12:00").setValue(appt);
+                                    if (totalduration > 60) {
+                                        ref.child(date).child("12:00").setValue(appt);
+                                        ref.child(date).child("13:00").setValue(appt);
+                                    } else if (totalduration > 120) {
+                                        ref.child(date).child("12:00").setValue(appt);
+                                        ref.child(date).child("13:00").setValue(appt);
+                                        ref.child(date).child("14:00").setValue(appt);
+                                    }
+                                    break;
+                                case "13:00":
+                                    if (totalduration <= 60)
+                                        ref.child(date).child("13:00").setValue(appt);
+                                    if (totalduration > 60) {
+                                        ref.child(date).child("13:00").setValue(appt);
+                                        ref.child(date).child("14:00").setValue(appt);
+                                    } else if (totalduration > 120) {
+                                        ref.child(date).child("13:00").setValue(appt);
+                                        ref.child(date).child("14:00").setValue(appt);
+                                        ref.child(date).child("15:00").setValue(appt);
+                                    }
+                                    break;
+                                case "14:00":
+                                    if (totalduration <= 60)
+                                        ref.child(date).child("14:00").setValue(appt);
+                                    if (totalduration > 60) {
+                                        ref.child(date).child("14:00").setValue(appt);
+                                        ref.child(date).child("15:00").setValue(appt);
+                                    } else if (totalduration > 120) {
+                                        ref.child(date).child("14:00").setValue(appt);
+                                        ref.child(date).child("15:00").setValue(appt);
+                                        ref.child(date).child("16:00").setValue(appt);
+                                    }
+                                    break;
+                                case "15:00":
+                                    if (totalduration <= 60)
+                                        ref.child(date).child("15:00").setValue(appt);
+                                    if (totalduration > 60) {
+                                        ref.child(date).child("15:00").setValue(appt);
+                                        ref.child(date).child("16:00").setValue(appt);
+                                    } else if (totalduration > 120) {
+                                        ref.child(date).child("15:00").setValue(appt);
+                                        ref.child(date).child("16:00").setValue(appt);
+                                        ref.child(date).child("17:00").setValue(appt);
+                                    }
+                                    break;
+                                case "16:00":
+                                    if (totalduration <= 60)
+                                        ref.child(date).child("16:00").setValue(appt);
+                                    if (totalduration > 60) {
+                                        ref.child(date).child("16:00").setValue(appt);
+                                        ref.child(date).child("17:00").setValue(appt);
+                                    } else if (totalduration > 120) {
+                                        ref.child(date).child("16:00").setValue(appt);
+                                        ref.child(date).child("17:00").setValue(appt);
+                                        ref.child(date).child("18:00").setValue(appt);
+                                    }
+                                    break;
+
                             }
-                            break;
-                        case "10:00":
-                            if (totalduration <= 60) ref.child(date).child("10:00").setValue(appt);
-                            if (totalduration > 60) {
-                                ref.child(date).child("10:00").setValue(appt);
-                                ref.child(date).child("11:00").setValue(appt);
-                            } else if (totalduration > 120) {
-                                ref.child(date).child("10:00").setValue(appt);
-                                ref.child(date).child("11:00").setValue(appt);
-                                ref.child(date).child("12:00").setValue(appt);
-                            }
-                            break;
-                        case "11:00":
-                            if (totalduration <= 60) ref.child(date).child("11:00").setValue(appt);
-                            if (totalduration > 60) {
-                                ref.child(date).child("11:00").setValue(appt);
-                                ref.child(date).child("12:00").setValue(appt);
-                            } else if (totalduration > 120) {
-                                ref.child(date).child("11:00").setValue(appt);
-                                ref.child(date).child("12:00").setValue(appt);
-                                ref.child(date).child("13:00").setValue(appt);
-                            }
-                            break;
-                        case "12:00":
-                            if (totalduration <= 60) ref.child(date).child("12:00").setValue(appt);
-                            if (totalduration > 60) {
-                                ref.child(date).child("12:00").setValue(appt);
-                                ref.child(date).child("13:00").setValue(appt);
-                            } else if (totalduration > 120) {
-                                ref.child(date).child("12:00").setValue(appt);
-                                ref.child(date).child("13:00").setValue(appt);
-                                ref.child(date).child("14:00").setValue(appt);
-                            }
-                            break;
-                        case "13:00":
-                            if (totalduration <= 60) ref.child(date).child("13:00").setValue(appt);
-                            if (totalduration > 60) {
-                                ref.child(date).child("13:00").setValue(appt);
-                                ref.child(date).child("14:00").setValue(appt);
-                            } else if (totalduration > 120) {
-                                ref.child(date).child("13:00").setValue(appt);
-                                ref.child(date).child("14:00").setValue(appt);
-                                ref.child(date).child("15:00").setValue(appt);
-                            }
-                            break;
-                        case "14:00":
-                            if (totalduration <= 60) ref.child(date).child("14:00").setValue(appt);
-                            if (totalduration > 60) {
-                                ref.child(date).child("14:00").setValue(appt);
-                                ref.child(date).child("15:00").setValue(appt);
-                            } else if (totalduration > 120) {
-                                ref.child(date).child("14:00").setValue(appt);
-                                ref.child(date).child("15:00").setValue(appt);
-                                ref.child(date).child("16:00").setValue(appt);
-                            }
-                            break;
-                        case "15:00":
-                            if (totalduration <= 60) ref.child(date).child("15:00").setValue(appt);
-                            if (totalduration > 60) {
-                                ref.child(date).child("15:00").setValue(appt);
-                                ref.child(date).child("16:00").setValue(appt);
-                            } else if (totalduration > 120) {
-                                ref.child(date).child("15:00").setValue(appt);
-                                ref.child(date).child("16:00").setValue(appt);
-                                ref.child(date).child("17:00").setValue(appt);
-                            }
-                            break;
-                        case "16:00":
-                            if (totalduration <= 60) ref.child(date).child("16:00").setValue(appt);
-                            if (totalduration > 60) {
-                                ref.child(date).child("16:00").setValue(appt);
-                                ref.child(date).child("17:00").setValue(appt);
-                            } else if (totalduration > 120) {
-                                ref.child(date).child("16:00").setValue(appt);
-                                ref.child(date).child("17:00").setValue(appt);
-                                ref.child(date).child("18:00").setValue(appt);
-                            }
-                            break;
-                    }
+
+                            Toast.makeText(ConfirmationActivity.this, "Randevu başarıyla alındı!",
+                                    Toast.LENGTH_SHORT).show();
+
+                            DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                            db.clearDatabase();
+
+
+                            Intent intent = new Intent(ConfirmationActivity.this, UserDashboard.class);
+                            startActivity(intent);
+                            finish();
+                        } else Toast.makeText(ConfirmationActivity.this, "Lütfen zamani seçiniz!",
+                                Toast.LENGTH_SHORT).show();
+                    } else Toast.makeText(ConfirmationActivity.this, "Lütfen servisi seçiniz!",
+                            Toast.LENGTH_SHORT).show();
                 }
-                else Toast.makeText(ConfirmationActivity.this, "Please select the time!",
-                        Toast.LENGTH_SHORT).show();
-
-                Toast.makeText(ConfirmationActivity.this, "Appointment successfully booked!",
-                        Toast.LENGTH_SHORT).show();
-
-                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                db.clearDatabase();
-
-
-                Intent intent = new Intent(ConfirmationActivity.this, UserDashboard.class);
-                startActivity(intent);
-                finish();
-
             }
         });
 
@@ -258,8 +263,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         //confirmAdapter.notifyDataSetChanged();
 
         //SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-       // String uid = sharedPref.getString("uid", "Not Available");
-       // String value = sharedPref.getString("service", "Not Available");
+        // String uid = sharedPref.getString("uid", "Not Available");
+        // String value = sharedPref.getString("service", "Not Available");
        /*
 
         String pricestr = sharedPref.getString("price", "Not Available");
@@ -310,5 +315,16 @@ public class ConfirmationActivity extends AppCompatActivity {
 
             }
         });*/
+    }
+
+    public boolean checkConnection() {
+        ConnectivityManager cm =
+                (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        final boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        return isConnected;
     }
 }

@@ -63,10 +63,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // insert row
         long id = db.insert(Service.TABLE_NAME, null, values);
-        if(id != -1)
-            Toast.makeText(getApplicationContext(), "New row added, row id: " + id, Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(getApplicationContext(), "Something wrong", Toast.LENGTH_SHORT).show();
 
         // close db connection
         db.close();

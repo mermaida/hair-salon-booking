@@ -49,7 +49,7 @@
                 android:drawableLeft="@android:drawable/ic_menu_gallery"
                 android:fontFamily="@font/arsenal"
                 android:gravity="center_vertical"
-                android:text="Click to View Gallery"
+                android:text="Galeriyı görmek için tiklayınız"
                 android:textSize="16sp" />
         </RelativeLayout>
 
@@ -62,12 +62,12 @@
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Services" />
+                android:text="Servisler" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Information" />
+                android:text="Hakkında" />
 
         </android.support.design.widget.TabLayout>
 

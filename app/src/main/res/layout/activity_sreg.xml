@@ -26,7 +26,7 @@
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Full Name"
+        android:hint="Adı Soyadı"
         android:inputType="textPersonName"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
@@ -41,7 +41,7 @@
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Salon Name"
+        android:hint="Salon Adı"
         android:inputType="textPersonName"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
@@ -56,7 +56,7 @@
         android:drawableLeft="@drawable/ic_action_phone"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Phone"
+        android:hint="Tel. No"
         android:inputType="phone"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
@@ -71,7 +71,7 @@
         android:drawableLeft="@drawable/ic_action_mail"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Email"
+        android:hint="Eposta"
         android:inputType="textEmailAddress"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
@@ -86,7 +86,7 @@
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Password"
+        android:hint="Şifre"
         android:inputType="textWebPassword"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
@@ -104,7 +104,7 @@
             android:layout_marginLeft="50dp"
             android:layout_weight="0.5"
             android:fontFamily="@font/arsenal"
-            android:text="Female"
+            android:text="Kadın"
             android:textSize="18sp" />
 
         <CheckBox
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:fontFamily="@font/arsenal"
-            android:text="Male"
+            android:text="Erkek"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/arsenal"
-                android:text="REGISTER"
+                android:text="KAYIT OL"
                 android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />

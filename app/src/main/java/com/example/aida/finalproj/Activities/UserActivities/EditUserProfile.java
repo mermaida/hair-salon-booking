@@ -1,12 +1,16 @@
 package com.example.aida.finalproj.Activities.UserActivities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.aida.finalproj.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,23 +50,29 @@ public class EditUserProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                final String name = cname.getText().toString();
-                final String phone = cphone.getText().toString();
-                final String email = cmail.getText().toString();
-                final String password = cpass.getText().toString();
+                boolean isConnected = checkConnection();
+                if (!isConnected)
+                    Toast.makeText(EditUserProfile.this, "İnternet bağlantısı yok", Toast.LENGTH_SHORT).show();
+                else {
 
-                if (!name.equals(""))
-                    ref.child("name").setValue(name);
-                if (!phone.equals(""))
-                    ref.child("phone").setValue(phone);
-                if (!email.equals(""))
-                    ref.child("email").setValue(email);
-                if (!password.equals(""))
-                    ref.child("password").setValue(password);
+                    final String name = cname.getText().toString();
+                    final String phone = cphone.getText().toString();
+                    final String email = cmail.getText().toString();
+                    final String password = cpass.getText().toString();
 
-                Intent intent = new Intent(EditUserProfile.this, UserProfile.class);
-                startActivity(intent);
-                finish();
+                    if (!name.equals(""))
+                        ref.child("name").setValue(name);
+                    if (!phone.equals(""))
+                        ref.child("phone").setValue(phone);
+                    if (!email.equals(""))
+                        ref.child("email").setValue(email);
+                    if (!password.equals(""))
+                        ref.child("password").setValue(password);
+
+                    Intent intent = new Intent(EditUserProfile.this, UserProfile.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
@@ -74,5 +84,16 @@ public class EditUserProfile extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public boolean checkConnection() {
+        ConnectivityManager cm =
+                (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        final boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        return isConnected;
     }
 }

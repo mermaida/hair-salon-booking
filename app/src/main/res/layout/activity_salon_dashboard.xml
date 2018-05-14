@@ -23,7 +23,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/arsenal"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Welcome! What would you like to do?"
+        android:text="Hoş geldiniz! Ne yapmak istersiniz?"
         android:textSize="22sp" />
 
     <android.support.v7.widget.CardView
@@ -46,9 +46,9 @@
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="@font/aubrey"
+                android:fontFamily="@font/arsenal"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="ADD/REMOVE SERVICES"
+                android:text="SERVİS EKLE/SİL"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -74,9 +74,9 @@
                 android:id="@+id/textView18"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="@font/aubrey"
+                android:fontFamily="@font/arsenal"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="VIEW YOUR SCHEDULE"
+                android:text="TAKVİM"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -102,9 +102,9 @@
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="@font/aubrey"
+                android:fontFamily="@font/arsenal"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="UPDATE INFORMATION"
+                android:text="BİLGİ GÜNCELLEME"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -130,9 +130,9 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="@font/aubrey"
+                android:fontFamily="@font/arsenal"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="EDIT GALLERY"
+                android:text="GALERİ"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -158,9 +158,9 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="@font/aubrey"
+                android:fontFamily="@font/arsenal"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="UPDATE ADDRESS"
+                android:text="ADRES GÜNCELLEME"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -174,7 +174,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="22dp"
         android:fontFamily="@font/arsenal"
-        android:text="Sign Out"
+        android:text="Çıkış yap."
         android:textAlignment="center"
         android:textSize="18sp" />
 

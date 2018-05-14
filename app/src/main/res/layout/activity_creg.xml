@@ -26,7 +26,7 @@
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Full Name"
+        android:hint="Adı Soyadı"
         android:inputType="textPersonName"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
@@ -41,8 +41,8 @@
         android:drawableLeft="@drawable/ic_action_phone"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Phone"
-        android:inputType="phone"
+        android:hint="Tel. No"
+        android:inputType="textNoSuggestions|phone"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
 
@@ -56,7 +56,7 @@
         android:drawableLeft="@drawable/ic_action_mail"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Email"
+        android:hint="Eposta"
         android:inputType="textEmailAddress"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
@@ -71,7 +71,7 @@
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Password"
+        android:hint="Şifre"
         android:inputType="textWebPassword"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16dp" />
@@ -97,29 +97,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/arsenal"
-                android:text="REGISTER"
+                android:text="KAYIT OL"
                 android:textColor="#fff"
                 android:textSize="18sp" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/dekko"
-        android:text="@string/com_facebook_smart_device_instructions_or"
-        android:textAlignment="center" />
-
-    <com.facebook.login.widget.LoginButton xmlns:fb="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/fblogin"
-        android:layout_width="249dp"
-        android:layout_height="145dp"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="centerInside"
-        android:text="Continue with Facebook"
-        fb:com_facebook_login_text="Facebook'la Devam Et" />
 
 </LinearLayout>

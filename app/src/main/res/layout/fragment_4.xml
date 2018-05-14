@@ -43,13 +43,13 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:background="@color/colorAccent"
-        android:text="Edit" />
+        android:text="GÜNCELlE" />
 
     <TextView
         android:id="@+id/signoutbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Sign out."
+        android:text="Çıkış yap."
         android:textAlignment="center" />
 </LinearLayout>

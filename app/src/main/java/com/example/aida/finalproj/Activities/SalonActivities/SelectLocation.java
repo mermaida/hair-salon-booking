@@ -212,8 +212,6 @@ public class SelectLocation extends FragmentActivity implements OnMapReadyCallba
             Task<PlaceBufferResponse> placeResult = mGeoDataClient.getPlaceById(placeId);
             placeResult.addOnCompleteListener(mUpdatePlaceDetailsCallback);
 
-            Toast.makeText(getApplicationContext(), "Clicked: " + primaryText,
-                    Toast.LENGTH_SHORT).show();
             Log.i("getPlace", "Called getPlaceById to get Place details for " + placeId);
         }
     };
@@ -249,7 +247,7 @@ public class SelectLocation extends FragmentActivity implements OnMapReadyCallba
     @Override
     public void onClick(View view) {
         if (view == sendBtn) {
-            if (!address.equals("")) {
+            if (address != null) {
                 geofire = new GeoFire(FirebaseDatabase.getInstance().getReference().child("salons_location"));
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 uid = user.getUid();
@@ -270,7 +268,7 @@ public class SelectLocation extends FragmentActivity implements OnMapReadyCallba
                 finish();
             }
             else
-                Toast.makeText(SelectLocation.this, "Please enter a location", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SelectLocation.this, "Lütfen adresinizi giriniz", Toast.LENGTH_SHORT).show();
         }
     }
 }

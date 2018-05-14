@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/arsenal"
-                android:text="SELECT DATE"
+                android:text="TARİHİ SEÇİN"
                 android:textColor="#fff"
                 android:textSize="18sp" />
         </RelativeLayout>
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_border"
-        android:text="9am" />
+        android:text="9:00" />
 
     <Button
         android:id="@+id/btn2"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_border"
-        android:text="10am" />
+        android:text="10:00" />
 
     <Button
         android:id="@+id/btn3"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_border"
-        android:text="11am" />
+        android:text="11:00" />
 
     <Button
         android:id="@+id/btn4"
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_border"
-        android:text="12pm" />
+        android:text="12:00" />
 
     <Button
         android:id="@+id/btn5"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_border"
-        android:text="1pm" />
+        android:text="13:00" />
 
     <Button
         android:id="@+id/btn6"
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_border"
-        android:text="2pm" />
+        android:text="14:00" />
 
     <Button
         android:id="@+id/btn7"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_border"
-        android:text="3pm" />
+        android:text="15:00" />
 
     <Button
         android:id="@+id/btn8"
@@ -108,6 +108,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:background="@drawable/button_border"
-        android:text="4pm" />
+        android:text="16:00" />
 
 </LinearLayout>

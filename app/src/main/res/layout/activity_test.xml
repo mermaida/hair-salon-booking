@@ -51,7 +51,7 @@
         android:layout_below="@+id/linear"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/arsenal"
-        android:text="confirm address"
+        android:text="DEVAM ET"
         android:textStyle="bold" />
 
 

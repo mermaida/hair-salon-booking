@@ -1,7 +1,10 @@
 package com.example.aida.finalproj.Activities.SalonActivities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.aida.finalproj.Activities.UserActivities.UserRegistration;
 import com.example.aida.finalproj.R;
 import com.example.aida.finalproj.Adapters.ImageGalleryAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -127,62 +131,68 @@ public class SalonGallery extends AppCompatActivity {
                     // path = imageData.getStringArrayListExtra(Define.INTENT_PATH);
                     // you can get an image path(ArrayList<String>) on <0.6.2
 
-                    ArrayList<Uri> path = imageData.getParcelableArrayListExtra(Define.INTENT_PATH);
-                    Log.i("listsize", "" + path.size());
-                    // you can get an image path(ArrayList<Uri>) on 0.6.2 and later
+                    boolean isConnected = checkConnection();
+                    if (!isConnected)
+                        Toast.makeText(SalonGallery.this, "İnternet bağlantısı yok", Toast.LENGTH_SHORT).show();
+                    else {
 
-                    storageRef = FirebaseStorage.getInstance().getReference();
+                        ArrayList<Uri> path = imageData.getParcelableArrayListExtra(Define.INTENT_PATH);
+                        Log.i("listsize", "" + path.size());
+                        // you can get an image path(ArrayList<Uri>) on 0.6.2 and later
 
-                    dialog = new ProgressDialog(SalonGallery.this);
-                    dialog.setMessage("Please wait...");
-                    dialog.show();
+                        storageRef = FirebaseStorage.getInstance().getReference();
 
-                    for (int i = 0; i < path.size(); i++) {
+                        dialog = new ProgressDialog(SalonGallery.this);
+                        dialog.setMessage("Lütfen bekleyiniz...");
+                        dialog.show();
 
-                        Uri selectedImage = path.get(i);
+                        for (int i = 0; i < path.size(); i++) {
 
-                        StorageReference testref = storageRef.child("images/" + selectedImage.getLastPathSegment());
-                        Log.i("imagepath", "" + selectedImage + " lastpathsegment " + selectedImage.getLastPathSegment());
-                        uploadTask = testref.putFile(selectedImage);
+                            Uri selectedImage = path.get(i);
 
-                        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                ref = FirebaseDatabase.getInstance().getReference().child("salons").child(uid).child("gallery").push().child("image_url");
-                                Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                                ref.setValue(downloadUrl.toString());
-                                uris = new ArrayList<>();
-                                ref2.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                                            String string_uri = childSnapshot.child("image_url").getValue(String.class);
-                                            Log.i("checkuri", "" + string_uri);
-                                            Uri image_url = Uri.parse(string_uri);
-                                            uris.add(image_url);
+                            StorageReference testref = storageRef.child("images/" + selectedImage.getLastPathSegment());
+                            Log.i("imagepath", "" + selectedImage + " lastpathsegment " + selectedImage.getLastPathSegment());
+                            uploadTask = testref.putFile(selectedImage);
+
+                            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    ref = FirebaseDatabase.getInstance().getReference().child("salons").child(uid).child("gallery").push().child("image_url");
+                                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                    ref.setValue(downloadUrl.toString());
+                                    uris = new ArrayList<>();
+                                    ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                                String string_uri = childSnapshot.child("image_url").getValue(String.class);
+                                                Log.i("checkuri", "" + string_uri);
+                                                Uri image_url = Uri.parse(string_uri);
+                                                uris.add(image_url);
+                                            }
+
+                                            imageAdapter = new ImageGalleryAdapter(SalonGallery.this, uris);
+                                            imagelayout.setAdapter(imageAdapter);
+
                                         }
 
-                                        imageAdapter = new ImageGalleryAdapter(SalonGallery.this, uris);
-                                        imagelayout.setAdapter(imageAdapter);
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
 
-                                    }
+                                        }
+                                    });
+                                    dialog.dismiss();
+                                    Toast.makeText(getApplicationContext(), "Resim başarıyla yüklendi!", Toast.LENGTH_SHORT).show();
+                                }
 
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-
-                                    }
-                                });
-                                dialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Uploaded!", Toast.LENGTH_SHORT).show();
-                            }
-
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                dialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Upload unsuccessful.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    dialog.dismiss();
+                                    Toast.makeText(getApplicationContext(), "Yükleme başarısız.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
                     }
                 }
                 break;
@@ -190,39 +200,56 @@ public class SalonGallery extends AppCompatActivity {
             case CAMERA_PIC_REQUEST:
                 if (resultCode == RESULT_OK) {
 
-                    dialog = new ProgressDialog(SalonGallery.this);
-                    dialog.setMessage("Please wait...");
-                    dialog.show();
+                    boolean isConnected = checkConnection();
+                    if (!isConnected)
+                        Toast.makeText(SalonGallery.this, "İnternet bağlantısı yok", Toast.LENGTH_SHORT).show();
+                    else {
 
-                    storageRef = FirebaseStorage.getInstance().getReference();
+                        dialog = new ProgressDialog(SalonGallery.this);
+                        dialog.setMessage("Lütfen bekleyiniz...");
+                        dialog.show();
 
-                    StorageReference testref = storageRef.child("images/" + fileUri.getLastPathSegment());
-                    Log.i("imagepath", "" + fileUri + " lastpathsegment " + fileUri.getLastPathSegment());
-                    uploadTask = testref.putFile(fileUri);
+                        storageRef = FirebaseStorage.getInstance().getReference();
 
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            ref = FirebaseDatabase.getInstance().getReference().child("salons").child(uid).child("gallery").push().child("image_url");
-                            Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                            ref.setValue(downloadUrl.toString());
-                            Toast.makeText(getApplicationContext(), "File Uploaded!", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            SalonGallery.this.finish();
-                            overridePendingTransition(0, 0);
-                            startActivity(SalonGallery.this.getIntent());
-                            overridePendingTransition(0, 0);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
-                            Toast.makeText(getApplicationContext(), "Upload unsuccessful.", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                        }
-                    });
+                        StorageReference testref = storageRef.child("images/" + fileUri.getLastPathSegment());
+                        Log.i("imagepath", "" + fileUri + " lastpathsegment " + fileUri.getLastPathSegment());
+                        uploadTask = testref.putFile(fileUri);
 
+                        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                ref = FirebaseDatabase.getInstance().getReference().child("salons").child(uid).child("gallery").push().child("image_url");
+                                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                ref.setValue(downloadUrl.toString());
+                                Toast.makeText(getApplicationContext(), "Resim başarıyla yüklendi!", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                                SalonGallery.this.finish();
+                                overridePendingTransition(0, 0);
+                                startActivity(SalonGallery.this.getIntent());
+                                overridePendingTransition(0, 0);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                Toast.makeText(getApplicationContext(), "Yükleme başarısız.", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        });
+
+                    }
                 }
                 break;
         }
+    }
+
+    public boolean checkConnection() {
+        ConnectivityManager cm =
+                (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        final boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        return isConnected;
     }
 }

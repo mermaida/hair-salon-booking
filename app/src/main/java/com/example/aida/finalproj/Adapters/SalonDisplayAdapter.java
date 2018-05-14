@@ -68,12 +68,12 @@ public class SalonDisplayAdapter extends RecyclerView.Adapter<SalonDisplayAdapte
                 Context context = view.getRootView().getContext();
                 AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
 
-                alert.setTitle("Confirmation");
-                alert.setMessage("Add service to basket?");
+                alert.setTitle("Ekle");
+                alert.setMessage("Bu servisi sepete eklemek ister misiniz?");
 
                 db = new DatabaseHelper(getApplicationContext());
 
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         // Intent intent = new Intent(view.getContext(), ConfirmationActivity.class);
 
@@ -93,11 +93,11 @@ public class SalonDisplayAdapter extends RecyclerView.Adapter<SalonDisplayAdapte
                             if (!exists)
                                 db.insertService(uid, service_name, price, duration, imagedb);
                             else
-                                Toast.makeText(getApplicationContext(), "You already added this service.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Bu servis zaten eklendi.", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Geri dön", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                     }
                 });

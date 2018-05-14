@@ -62,7 +62,7 @@ public class SalonRetrieveAdapter extends RecyclerView.Adapter<SalonRetrieveAdap
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.sname.setText(appointments.get(position).getSalon_name());
         holder.datetime.setText(appointments.get(position).getDate() + ", " + appointments.get(position).getTime());
-        holder.price.setText("Total price: " + Double.toString(appointments.get(position).getTotal_price()));
+        holder.price.setText("Toplam fiyat: " + Double.toString(appointments.get(position).getTotal_price()));
 
         List <String> keys = appointments.get(position).getService_name();
         if (keys != null) {
@@ -70,7 +70,7 @@ public class SalonRetrieveAdapter extends RecyclerView.Adapter<SalonRetrieveAdap
             else {
                 String lastkey = keys.get(keys.size() - 1);
                 keys.remove(keys.size() - 1);
-                String str = Arrays.toString(keys.toArray()).replace("[", "").replace("]", "" + " and " + lastkey);
+                String str = Arrays.toString(keys.toArray()).replace("[", "").replace("]", "" + " ve " + lastkey);
                 holder.servicenames.setText(str);
             }
         }

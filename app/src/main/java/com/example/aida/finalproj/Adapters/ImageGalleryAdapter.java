@@ -64,9 +64,9 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
                     Context context = view.getRootView().getContext();
                     AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
 
-                    alert.setTitle("Confirmation");
-                    alert.setMessage("Remove this image?");
-                    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    alert.setTitle("Onaylama");
+                    alert.setMessage("Bu resmi silmek ister misiniz?");
+                    alert.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             uid = user.getUid();
@@ -93,10 +93,10 @@ public class ImageGalleryAdapter extends RecyclerView.Adapter<ImageGalleryAdapte
 
                                 }
                             });
-                            Toast.makeText(getApplicationContext(), "Image removed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Resim silindi.", Toast.LENGTH_SHORT).show();
                         }
                     });
-                    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    alert.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                         }
                     });

@@ -77,10 +77,10 @@ public class Fragment2 extends Fragment {
                 }
 
                 salonname.setText(displayedSalon.getSalon_name());
-                name.setText("Owner: " + displayedSalon.getName());
-                address.setText("Address: "+ displayedSalon.getAddress());
-                phone.setText("Phone: " + displayedSalon.getPhone());
-                email.setText("Email: " + displayedSalon.getEmail());
+                name.setText("Sahip: " + displayedSalon.getName());
+                address.setText("Adres: "+ displayedSalon.getAddress());
+                phone.setText("Tel. No: " + displayedSalon.getPhone());
+                email.setText("Eposta: " + displayedSalon.getEmail());
 
                 double rate = displayedSalon.getRating();
                 String stringrate = Double.toString(rate);

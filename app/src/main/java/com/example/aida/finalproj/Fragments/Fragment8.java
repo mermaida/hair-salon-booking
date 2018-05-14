@@ -98,7 +98,7 @@ public class Fragment8 extends Fragment {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     String millitodate = sdf.format(dateobj);
 
-                    if (millidate < millidatedb) {
+                    if (millidate <= millidatedb) {
 
                         final RetrievedAppointment retrievedAppointment = childSnapshot.getValue(RetrievedAppointment.class);
                         retrievedAppointment.setDate(millitodate);

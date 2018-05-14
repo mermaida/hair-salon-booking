@@ -15,13 +15,13 @@ public class Salon {
     public String password;
     public String address;
     public double rating;
-    public boolean fem;
-    public boolean m;
+    public boolean female;
+    public boolean male;
 
     public Salon() {
     }
 
-    public Salon(String name, String salon_name, String phone, String email, String password, String address, double rating, boolean fem, boolean m) {
+    public Salon(String name, String salon_name, String phone, String email, String password, String address, double rating, boolean female, boolean male) {
         this.name = name;
         this.salon_name = salon_name;
         this.phone = phone;
@@ -29,8 +29,8 @@ public class Salon {
         this.password = password;
         this.address = address;
         this.rating = rating;
-        this.fem = fem;
-        this.m = m;
+        this.female = female;
+        this.male = male;
 
     }
 
@@ -84,20 +84,20 @@ public class Salon {
         this.rating = rating;
     }
 
-    public boolean getFem() {
-        return this.fem;
+    public boolean getFemale() {
+        return this.female;
     }
 
-    public void setFem(boolean fem) {
-        this.fem = fem;
+    public void setFemale(boolean female) {
+        this.female = female;
     }
 
-    public boolean getM() {
-        return this.m;
+    public boolean getMale() {
+        return this.male;
     }
 
-    public void setM(boolean m) {
-        this.m = m;
+    public void setMale(boolean male) {
+        this.male = male;
     }
 
 

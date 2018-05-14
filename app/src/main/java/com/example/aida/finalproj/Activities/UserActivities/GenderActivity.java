@@ -47,6 +47,7 @@ public class GenderActivity extends AppCompatActivity {
                     intent = new Intent(GenderActivity.this, UserDashboard.class).putExtra("gender", gnd);
                 }
                 startActivity(intent);
+                finish();
             }
         });
 

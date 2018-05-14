@@ -61,7 +61,6 @@ public class ImageUserAdapter extends RecyclerView.Adapter<ImageUserAdapter.View
                     Intent intent = new Intent(getApplicationContext(), PhotoDetail.class);
                     intent.putExtra(PhotoDetail.EXTRA_PHOTO, urls.get(position));
                     getApplicationContext().startActivity(intent);
-                    activity.finish();
                 }
             }
         });

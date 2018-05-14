@@ -238,7 +238,7 @@ public class UserDashboard extends AppCompatActivity {
         top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Query query = ref2.orderByChild("rating").startAt(3.0).limitToLast(20);
+                Query query = ref2.orderByChild("rating").startAt(4.0).limitToLast(20);
                 reverseAdapter(query);
                 salon_list.setAdapter(firebaseRecyclerAdapter);
             }
@@ -374,6 +374,7 @@ public class UserDashboard extends AppCompatActivity {
                                 Salon salon = dataSnapshot.getValue(Salon.class);
                                 value = salon.getSalon_name();
                                 Intent intent = new Intent(view.getContext(), SelectService.class).putExtra("name", value);
+                                intent.putExtra("id", dataSnapshot.getKey());
                                 view.getContext().startActivity(intent);
                             }
 

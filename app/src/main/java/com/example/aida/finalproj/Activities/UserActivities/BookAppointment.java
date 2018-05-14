@@ -132,7 +132,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
                     public void onDataChange(DataSnapshot snapshot) {
                             if (duration > 60) {
                                 if (snapshot.hasChild("10:00")) {
-                                    Toast.makeText(BookAppointment.this, "Your appointment is too long and clashes with another one. Please select another time.",
+                                    Toast.makeText(BookAppointment.this, "Seçtiğiniz saat bir başka müşteri ile çakışıyor, lütfen başka bir saat seçiniz.",
                                             Toast.LENGTH_LONG).show();
                                 }
 
@@ -158,7 +158,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
 
                     }
                 });
-            } else Toast.makeText(BookAppointment.this, "Please select a date first",
+            } else Toast.makeText(BookAppointment.this, "Lütfen tarihi seçiniz",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -170,7 +170,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
                     public void onDataChange(DataSnapshot snapshot) {
                         if (duration > 60) {
                             if (snapshot.hasChild("11:00")) {
-                                Toast.makeText(BookAppointment.this, "Your appointment is too long and clashes with another one. Please select another time.",
+                                Toast.makeText(BookAppointment.this, "Seçtiğiniz saat bir başka müşteri ile çakışıyor, lütfen başka bir saat seçiniz.",
                                         Toast.LENGTH_LONG).show();
                             }
 
@@ -195,7 +195,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
 
                     }
                 });
-            } else Toast.makeText(BookAppointment.this, "Please select a date first",
+            } else Toast.makeText(BookAppointment.this, "Lütfen tarihi seçiniz",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -207,7 +207,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
                     public void onDataChange(DataSnapshot snapshot) {
                         if (duration > 60) {
                             if (snapshot.hasChild("12:00")) {
-                                Toast.makeText(BookAppointment.this, "Your appointment is too long and clashes with another one. Please select another time.",
+                                Toast.makeText(BookAppointment.this, "Seçtiğiniz saat bir başka müşteri ile çakışıyor, lütfen başka bir saat seçiniz.",
                                         Toast.LENGTH_LONG).show();
                             }
 
@@ -232,7 +232,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
 
                     }
                 });
-            } else Toast.makeText(BookAppointment.this, "Please select a date first",
+            } else Toast.makeText(BookAppointment.this, "Lütfen tarihi seçiniz",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -244,7 +244,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
                     public void onDataChange(DataSnapshot snapshot) {
                         if (duration > 60) {
                             if (snapshot.hasChild("13:00")) {
-                                Toast.makeText(BookAppointment.this, "Your appointment is too long and clashes with another one. Please select another time.",
+                                Toast.makeText(BookAppointment.this, "Seçtiğiniz saat bir başka müşteri ile çakışıyor, lütfen başka bir saat seçiniz.",
                                         Toast.LENGTH_LONG).show();
                             }
 
@@ -269,7 +269,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
 
                     }
                 });
-            } else Toast.makeText(BookAppointment.this, "Please select a date first",
+            } else Toast.makeText(BookAppointment.this, "Lütfen tarihi seçiniz",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -281,7 +281,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
                     public void onDataChange(DataSnapshot snapshot) {
                         if (duration > 60) {
                             if (snapshot.hasChild("14:00")) {
-                                Toast.makeText(BookAppointment.this, "Your appointment is too long and clashes with another one. Please select another time.",
+                                Toast.makeText(BookAppointment.this, "Seçtiğiniz saat bir başka müşteri ile çakışıyor, lütfen başka bir saat seçiniz.",
                                         Toast.LENGTH_LONG).show();
                             }
 
@@ -306,7 +306,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
 
                     }
                 });
-            } else Toast.makeText(BookAppointment.this, "Please select a date first",
+            } else Toast.makeText(BookAppointment.this, "Lütfen tarihi seçiniz",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -318,7 +318,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
                     public void onDataChange(DataSnapshot snapshot) {
                         if (duration > 60) {
                             if (snapshot.hasChild("15:00")) {
-                                Toast.makeText(BookAppointment.this, "Your appointment is too long and clashes with another one. Please select another time.",
+                                Toast.makeText(BookAppointment.this, "Seçtiğiniz saat bir başka müşteri ile çakışıyor, lütfen başka bir saat seçiniz.",
                                         Toast.LENGTH_LONG).show();
                             }
 
@@ -343,7 +343,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
 
                     }
                 });
-            } else Toast.makeText(BookAppointment.this, "Please select a date first",
+            } else Toast.makeText(BookAppointment.this, "Lütfen tarihi seçiniz",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -355,7 +355,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
                     public void onDataChange(DataSnapshot snapshot) {
                         if (duration > 60) {
                             if (snapshot.hasChild("16:00")) {
-                                Toast.makeText(BookAppointment.this, "Your appointment is too long and clashes with another one. Please select another time.",
+                                Toast.makeText(BookAppointment.this, "Seçtiğiniz saat bir başka müşteri ile çakışıyor, lütfen başka bir saat seçiniz.",
                                         Toast.LENGTH_LONG).show();
                             }
 
@@ -380,7 +380,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
 
                     }
                 });
-            } else Toast.makeText(BookAppointment.this, "Please select a date first",
+            } else Toast.makeText(BookAppointment.this, "Lütfen tarihi seçiniz",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -392,7 +392,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
                     public void onDataChange(DataSnapshot snapshot) {
                         if (duration > 120) {
                             if (snapshot.hasChild("18:00")) {
-                                Toast.makeText(BookAppointment.this, "Your appointment is too long and clashes with another one. Please select another time.",
+                                Toast.makeText(BookAppointment.this, "Seçtiğiniz saat bir başka müşteri ile çakışıyor, lütfen başka bir saat seçiniz.",
                                         Toast.LENGTH_LONG).show();
                             }
 
@@ -417,7 +417,7 @@ public class BookAppointment extends AppCompatActivity implements View.OnClickLi
 
                     }
                 });
-            } else Toast.makeText(BookAppointment.this, "Please select a date first",
+            } else Toast.makeText(BookAppointment.this, "Lütfen tarihi Seçiniz",
                     Toast.LENGTH_SHORT).show();
         }
     }

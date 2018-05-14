@@ -63,8 +63,8 @@ public class Fragment4 extends Fragment {
                     Log.i("parent id", "" + key);*/
 
                 name.setText(displayedUser.getName());
-                phone.setText("Phone: " + displayedUser.getPhone());
-                email.setText("Email: " + displayedUser.getEmail());
+                phone.setText("Tel. No: " + displayedUser.getPhone());
+                email.setText("Eposta: " + displayedUser.getEmail());
 
             }
 

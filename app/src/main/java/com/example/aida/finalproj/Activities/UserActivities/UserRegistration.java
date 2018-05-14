@@ -1,15 +1,20 @@
 package com.example.aida.finalproj.Activities.UserActivities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.aida.finalproj.Activities.Authentication.LoginActivity;
 import com.example.aida.finalproj.Activities.SalonActivities.SalonRegistration;
 import com.example.aida.finalproj.Classes.User;
 import com.example.aida.finalproj.R;
@@ -63,137 +68,77 @@ public class UserRegistration extends FragmentActivity {
 
             @Override
             public void onClick(View view) {
-
-                mDialog = new ProgressDialog(UserRegistration.this);
-                mDialog.setMessage("Please wait...");
-                mDialog.show();
-
-                final String name = cname.getText().toString();
-                final String phone = cphone.getText().toString();
-                final String email = cmail.getText().toString();
-                final String password = cpass.getText().toString();
-
-                if (name.equals("") || phone.equals("") || email.equals("") || password.equals("")) {
-                    mDialog.dismiss();
-                    Toast.makeText(UserRegistration.this, "Please fill in all fields.", Toast.LENGTH_SHORT).show();
-                }
-
+                boolean isConnected = checkConnection();
+                if (!isConnected)
+                    Toast.makeText(UserRegistration.this, "İnternet bağlantısı yok", Toast.LENGTH_SHORT).show();
                 else {
 
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(UserRegistration.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        String uid = user.getUid();
-                                        writeNewUser(uid, name, phone, email, password);
-                                        Intent intent = new Intent(UserRegistration.this, UserDashboard.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
+                    mDialog = new ProgressDialog(UserRegistration.this);
+                    mDialog.setMessage("Lütfen bekleyiniz...");
+                    mDialog.show();
 
-                                        String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
+                    final String name = cname.getText().toString();
+                    final String phone = cphone.getText().toString();
+                    final String email = cmail.getText().toString();
+                    final String password = cpass.getText().toString();
 
-                                        switch (errorCode) {
+                    if (name.equals("") || phone.equals("") || email.equals("") || password.equals("")) {
+                        mDialog.dismiss();
+                        Toast.makeText(UserRegistration.this, "Lütfen boş alan bırakmayınız", Toast.LENGTH_SHORT).show();
+                    } else {
 
-                                            case "ERROR_INVALID_CUSTOM_TOKEN":
-                                                Toast.makeText(UserRegistration.this, "The custom token format is incorrect. Please check the documentation.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
+                        mAuth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(UserRegistration.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            String uid = user.getUid();
+                                            writeNewUser(uid, name, phone, email, password);
+                                            mDialog.dismiss();
+                                            Intent intent = new Intent(UserRegistration.this, UserDashboard.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
 
-                                            case "ERROR_CUSTOM_TOKEN_MISMATCH":
-                                                Toast.makeText(UserRegistration.this, "The custom token corresponds to a different audience.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
+                                            String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
 
-                                            case "ERROR_INVALID_CREDENTIAL":
-                                                Toast.makeText(UserRegistration.this, "The supplied auth credential is malformed or has expired.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
+                                            switch (errorCode) {
 
-                                            case "ERROR_INVALID_EMAIL":
-                                                Toast.makeText(UserRegistration.this, "The email address is badly formatted.", Toast.LENGTH_LONG).show();
-                                                cmail.setError("The email address is badly formatted.");
-                                                cmail.requestFocus();
-                                                mDialog.dismiss();
-                                                break;
+                                                case "ERROR_INVALID_EMAIL":
+                                                    Toast.makeText(UserRegistration.this, "Lütfen eposta formati kullanınız.", Toast.LENGTH_LONG).show();
+                                                    cmail.setError("Lütfen eposta formati kullanınız.");
+                                                    cmail.requestFocus();
+                                                    mDialog.dismiss();
+                                                    break;
 
-                                            case "ERROR_WRONG_PASSWORD":
-                                                Toast.makeText(UserRegistration.this, "The password is invalid or the user does not have a password.", Toast.LENGTH_LONG).show();
-                                                cpass.setError("password is incorrect ");
-                                                cpass.requestFocus();
-                                                cpass.setText("");
-                                                mDialog.dismiss();
-                                                break;
 
-                                            case "ERROR_USER_MISMATCH":
-                                                Toast.makeText(UserRegistration.this, "The supplied credentials do not correspond to the previously signed in user.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
+                                                case "ERROR_EMAIL_ALREADY_IN_USE":
+                                                    Toast.makeText(UserRegistration.this, "E-posta adresi zaten mevcut", Toast.LENGTH_LONG).show();
+                                                    cmail.setError("E-posta adresi zaten mevcut");
+                                                    cmail.requestFocus();
+                                                    mDialog.dismiss();
+                                                    break;
 
-                                            case "ERROR_REQUIRES_RECENT_LOGIN":
-                                                Toast.makeText(UserRegistration.this, "This operation is sensitive and requires recent authentication. Log in again before retrying this request.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
 
-                                            case "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL":
-                                                Toast.makeText(UserRegistration.this, "An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
-
-                                            case "ERROR_EMAIL_ALREADY_IN_USE":
-                                                Toast.makeText(UserRegistration.this, "The email address is already in use by another account.   ", Toast.LENGTH_LONG).show();
-                                                cmail.setError("The email address is already in use by another account.");
-                                                cmail.requestFocus();
-                                                mDialog.dismiss();
-                                                break;
-
-                                            case "ERROR_CREDENTIAL_ALREADY_IN_USE":
-                                                Toast.makeText(UserRegistration.this, "This credential is already associated with a different user account.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
-
-                                            case "ERROR_USER_DISABLED":
-                                                Toast.makeText(UserRegistration.this, "The user account has been disabled by an administrator.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
-
-                                            case "ERROR_USER_TOKEN_EXPIRED":
-                                                Toast.makeText(UserRegistration.this, "The user\\'s credential is no longer valid. The user must sign in again.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
-
-                                            case "ERROR_USER_NOT_FOUND":
-                                                Toast.makeText(UserRegistration.this, "There is no user record corresponding to this identifier. The user may have been deleted.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
-
-                                            case "ERROR_INVALID_USER_TOKEN":
-                                                Toast.makeText(UserRegistration.this, "The user\\'s credential is no longer valid. The user must sign in again.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
-
-                                            case "ERROR_OPERATION_NOT_ALLOWED":
-                                                Toast.makeText(UserRegistration.this, "This operation is not allowed. You must enable this service in the console.", Toast.LENGTH_LONG).show();
-                                                mDialog.dismiss();
-                                                break;
-
-                                            case "ERROR_WEAK_PASSWORD":
-                                                Toast.makeText(UserRegistration.this, "The given password is invalid.", Toast.LENGTH_LONG).show();
-                                                cpass.setError("The password is invalid it must 6 characters at least");
-                                                cpass.requestFocus();
-                                                mDialog.dismiss();
-                                                break;
+                                                case "ERROR_WEAK_PASSWORD":
+                                                    Toast.makeText(UserRegistration.this, "Şifre en az 6 karakter içermeli", Toast.LENGTH_LONG).show();
+                                                    cpass.setError("Şifre en az 6 karakter içermeli");
+                                                    cpass.requestFocus();
+                                                    mDialog.dismiss();
+                                                    break;
+                                            }
                                         }
                                     }
-                                }
-                            });
+                                });
+                    }
                 }
             }
         });
+    }
 
-        mCallbackManager = CallbackManager.Factory.create();
+
+       /* mCallbackManager = CallbackManager.Factory.create();
         fbbtn = findViewById(R.id.fblogin);
 
         fbbtn.setReadPermissions("email", "public_profile");
@@ -216,7 +161,7 @@ public class UserRegistration extends FragmentActivity {
                 // ...
             }
         });
-    }
+    }*/
 
         /*@Override
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -234,7 +179,7 @@ public class UserRegistration extends FragmentActivity {
         mDatabase.child("users").child(uid).setValue(user);
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
+    /*private void handleFacebookAccessToken(AccessToken token) {
       //  Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
@@ -258,5 +203,16 @@ public class UserRegistration extends FragmentActivity {
                         // ...
                     }
                 });
+    }*/
+
+    public boolean checkConnection() {
+        ConnectivityManager cm =
+                (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        final boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        return isConnected;
     }
 }

@@ -209,7 +209,7 @@ public class ScheduleOverview extends AppCompatActivity {
 
                                                 }
                                             });
-                                            Toast.makeText(ScheduleOverview.this, "Appointment successfully cancelled.",
+                                            Toast.makeText(ScheduleOverview.this, "Randevu iptal edildi.",
                                                     Toast.LENGTH_SHORT).show();
                                             popupWindow.dismiss();
                                         }
@@ -218,9 +218,9 @@ public class ScheduleOverview extends AppCompatActivity {
 
                                     if (services != null) {
                                         for (int i = 0; i < services.size(); i++) {
-                                            srvname.setText("Services ordered: " + services.get(i) + ", ");
+                                            srvname.setText("Servisler: " + services.get(i) + ", ");
                                         }
-                                        price.setText("Total price: " + prices);
+                                        price.setText("Toplam fiyat " + prices);
                                     }
 
                                     if (users.size() != 0) {
@@ -230,7 +230,7 @@ public class ScheduleOverview extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 usernames = dataSnapshot.child("name").getValue(String.class);
-                                                username.setText("Client name: " + usernames);
+                                                username.setText("Müşteri: " + usernames);
                                             }
 
                                             @Override

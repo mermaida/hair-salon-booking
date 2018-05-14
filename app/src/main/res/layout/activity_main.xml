@@ -25,7 +25,7 @@
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/monofett"
-        android:text="Kuafor'um"
+        android:text="Kuaför'üm"
         android:textSize="36sp" />
 
     <EditText
@@ -38,7 +38,7 @@
         android:drawableLeft="@drawable/ic_action_mail"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Email"
+        android:hint="Eposta"
         android:inputType="textPersonName"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16sp" />
@@ -54,7 +54,7 @@
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
         android:fontFamily="@font/arsenal"
-        android:hint="Password"
+        android:hint="Şifre"
         android:inputType="textPassword"
         android:textColorHint="#a5aaaaaa"
         android:textSize="16sp" />
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/arsenal"
-                android:text="LOGIN"
+                android:text="GİRİŞ YAP"
                 android:textAlignment="center"
                 android:textColor="#fff"
                 android:textSize="18sp" />
@@ -95,7 +95,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="22dp"
         android:fontFamily="@font/aubrey"
-        android:text="Not a registered user? Register now."
+        android:text="Kayıt ol."
         android:textSize="18sp"
         android:textStyle="bold" />
 </RelativeLayout>

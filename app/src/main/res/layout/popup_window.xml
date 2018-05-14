@@ -56,7 +56,7 @@
             android:background="@color/common_google_signin_btn_text_light_default"
             android:fontFamily="@font/arsenal"
             android:padding="5dp"
-            android:text="View client's profile"
+            android:text="Müşterİnİn profİlİne bak"
             android:textStyle="bold" />
 
         <Button
@@ -68,7 +68,7 @@
             android:background="@color/common_google_signin_btn_text_light_default"
             android:fontFamily="@font/arsenal"
             android:padding="5dp"
-            android:text="cancel appointment"
+            android:text="randevuyu iptal et"
             android:textStyle="bold" />
     </LinearLayout>
 

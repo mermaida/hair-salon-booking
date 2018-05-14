@@ -20,7 +20,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/arsenal"
-            android:text="Your selected services"
+            android:text="Seçtiğiniz Servisler"
             android:textAlignment="center"
             android:textSize="24sp" />
 
@@ -37,7 +37,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/arsenal"
-            android:text="Selected Time"
+            android:text="Seçtiğiniz Zaman"
             android:textAlignment="center"
             android:textSize="24sp" />
 
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/arsenal"
-            android:text="Date and time not selected."
+            android:text="Tarih ve zaman seçilmedi."
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -58,7 +58,7 @@
             android:layout_marginTop="20dp"
             android:background="@color/colorAccent"
             android:fontFamily="@font/arsenal"
-            android:text="select time"
+            android:text="zamanı seçin"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -71,7 +71,7 @@
         android:layout_above="@+id/confirm"
         android:layout_alignParentStart="true"
         android:fontFamily="@font/arsenal"
-        android:text="Total Price:"
+        android:text="Toplam fiyat:"
         android:textAlignment="viewStart"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
@@ -85,7 +85,7 @@
         android:layout_marginTop="5dp"
         android:background="@color/colorAccent"
         android:fontFamily="@font/arsenal"
-        android:text="confirm order"
+        android:text="Onayla"
         android:textSize="18sp"
         android:textStyle="bold" />
 

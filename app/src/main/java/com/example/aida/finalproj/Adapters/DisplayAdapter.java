@@ -54,8 +54,8 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.name.setText(services.get(position).getService_name());
-        holder.price.setText("Price: ₺" + Double.toString(services.get(position).getPrice()));
-        holder.duration.setText("Duration: " + Double.toString(services.get(position).getDuration()));
+        holder.price.setText("Fiyat: ₺" + Double.toString(services.get(position).getPrice()));
+        holder.duration.setText("Süre: " + Double.toString(services.get(position).getDuration()) + "dk");
 
         Glide.with(getApplicationContext()).load(services.get(position).getImage()).into(image);
 
@@ -65,12 +65,12 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
                 Context context = view.getRootView().getContext();
                 AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
 
-                alert.setTitle("Confirmation");
-                alert.setMessage("Add service to basket?");
+                alert.setTitle("Ekle");
+                alert.setMessage("Sepete eklemek ister misiniz?");
 
                 db = new DatabaseHelper(getApplicationContext());
 
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                        // Intent intent = new Intent(view.getContext(), ConfirmationActivity.class);
 
@@ -92,13 +92,13 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
                             if (!exists)
                                 db.insertService(id, service_name, price, duration, imagedb);
                             else
-                                Toast.makeText(getApplicationContext(), "You already added this service.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Bu servis sepete zaten eklendi.", Toast.LENGTH_SHORT).show();
                         }
-                        else Toast.makeText(getApplicationContext(), "You can't add services from a different salon!", Toast.LENGTH_LONG).show();
+                        else Toast.makeText(getApplicationContext(), "Başka bir salondan servis eklenmez!", Toast.LENGTH_LONG).show();
                     }
                 });
 
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                     }
                 });

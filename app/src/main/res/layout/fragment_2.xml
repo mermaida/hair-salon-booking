@@ -73,7 +73,7 @@
         android:layout_marginTop="30dp"
         android:background="@color/colorAccent"
         android:fontFamily="@font/arsenal"
-        android:text="See on map"
+        android:text="harİtada aç"
         android:textSize="18sp"
         android:textStyle="bold" />
 </LinearLayout>

@@ -73,7 +73,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.sname.setText(appointments.get(position).getSalon_name());
         holder.datetime.setText(appointments.get(position).getDate() + ", " + appointments.get(position).getTime());
-        holder.price.setText("Total price: ₺" + Double.toString(appointments.get(position).getTotal_price()));
+        holder.price.setText("Toplam fiyat: ₺" + Double.toString(appointments.get(position).getTotal_price()));
 
         List <String> keys = appointments.get(position).getService_name();
         if (keys != null) {
@@ -81,7 +81,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             else {
                 String lastkey = keys.get(keys.size() - 1);
                 keys.remove(keys.size() - 1);
-                String str = Arrays.toString(keys.toArray()).replace("[", "").replace("]", "" + " and " + lastkey);
+                String str = Arrays.toString(keys.toArray()).replace("[", "").replace("]", "" + " ve " + lastkey);
                 holder.servicenames.setText(str);
             }
         }
@@ -142,11 +142,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
                                     Log.i("valuetest", "current result: " + current);
 
                                     result = (old + current) / 2;
+                                    double finalresult = round(result, 2);
                                     Log.i("valuetest", "final result: " + result);
 
                                     sid = childSnapshot.getKey();
                                     Log.i("valuetest", "salon_id: " + sid);
-                                    ref2.child(sid).child("rating").setValue(result);
+                                    ref2.child(sid).child("rating").setValue(finalresult);
                                 }
 
                             }
@@ -186,5 +187,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             price = itemView.findViewById(R.id.tprice);
             layout = itemView.findViewById(R.id.lnlayout);
         }
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }

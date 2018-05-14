@@ -14,7 +14,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/arsenal"
-        android:text="Gallery"
+        android:text="Galeri"
         android:textAlignment="center"
         android:textSize="20sp" />
 

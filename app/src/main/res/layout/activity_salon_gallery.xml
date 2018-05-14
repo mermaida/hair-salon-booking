@@ -15,7 +15,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/arsenal"
-        android:text="Your Current Gallery"
+        android:text="Galleriniz"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -41,11 +41,10 @@
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:fontFamily="@font/arsenal"
-            android:text="Take a photo"
+            android:text="fotoğraf çek"
             android:textStyle="bold" />
 
         <Button
@@ -56,7 +55,7 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:fontFamily="@font/arsenal"
-            android:text="Upload from your device"
+            android:text="cİhazdan yükle"
             android:textStyle="bold" />
 
     </LinearLayout>

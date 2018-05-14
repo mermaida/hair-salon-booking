@@ -80,8 +80,8 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
 
         holder.mname.setText(services.get(position).getService_name());
 
-        holder.price.setText("Price: " + Double.toString(p) + "₺");
-        holder.duration.setText("Duration: " + Integer.toString(d2));
+        holder.price.setText("Fiyat: ₺" + Double.toString(p));
+        holder.duration.setText("Süre: " + Integer.toString(d2) + "dk");
 
        // Log.i("imagestring", "" + services.get(position).getImage());
         Glide.with(getApplicationContext()).load(services.get(position).getImage()).into(image);
@@ -96,13 +96,13 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
                 layout = new LinearLayout(context);
                 layout.setOrientation(LinearLayout.VERTICAL);
 
-                String[] items = {"Yes", "No"};
+                String[] items = {"Evet", "Hayir"};
 
                 user = FirebaseAuth.getInstance().getCurrentUser();
                 uid = user.getUid();
 
                 //TextView ques = new TextView(context);
-                alert.setTitle("Do you want to have this service?");
+                alert.setTitle("Bu servisi eklemek ister misiniz?");
                // layout.addView(ques);
 
                 service = services.get(position);
@@ -115,12 +115,12 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
                                     case 0:
                                         choice = true;
                                         price = new EditText(context);
-                                        price.setHint("Price");
+                                        price.setHint("Fıyat");
                                         price.setInputType(InputType.TYPE_CLASS_NUMBER);
                                         layout.addView(price);
 
                                         duration = new EditText(context);
-                                        duration.setHint("Duration (in minutes)");
+                                        duration.setHint("Süre (dk)");
                                         duration.setInputType(InputType.TYPE_CLASS_NUMBER);
                                         layout.addView(duration);
 
@@ -138,7 +138,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
 
                 alert.setView(layout);
 
-                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alert.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if(choice) ref.child("s" + (position)).child("exists").setValue(choice);
                         else ref.child("s" + (position)).child("exists").setValue(choice);
@@ -156,10 +156,14 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ViewHold
                         ref.child("s" + (position)).child("duration").setValue(dur2);
 
                         notifyDataSetChanged();
+                        activity.finish();
+                        activity.overridePendingTransition(0, 0);
+                        activity.startActivity(activity.getIntent());
+                        activity.overridePendingTransition(0, 0);
 
                     }
                 });
-                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                alert.setNegativeButton("Geri dön", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                     }
